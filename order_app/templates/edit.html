@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <form action="{% url 'update' order.id %}" method="post">
+            {% csrf_token %}
+            <h1>Edit Order</h1>
+            <div>
+                {% if msg %}
+                <p>{{msg}}</p>
+                {% endif %}
+            </div>
+            <div>
+                <div>
+                    <label for="">Customer</label>
+
+                    <input type="text" name="cust" value="{{order.customer_id}}" readonly>
+
+                </div><br>
+                <div>
+                    <label for="">Product</label>
+                    <input type="text" name="cust" value="{{order.product_id}}" readonly>
+                </div><br>
+                <div>
+                    <label for="">Price</label>
+                    <input type="text" name="price" id="" value="{{order.price}}" readonly>
+                </div><br>
+                <div>
+                    <label for="">Quentity</label>
+                    <input type="text" name="quentity" value="{{order.qty}}">
+                </div><br>
+                <div>
+                    <label for="">Total Price</label>
+                    <input type="text" name="totalprice" value="{{order.total_price}}">
+                </div><br>
+                <div>
+                    <input type="submit" value="Edit">
+                </div>
+            </div>
+        </form>
+        <div>
+            <a href="{% url 'all_order' %}">All Order</a>
+        </div>
+    </center>
+</body>
+
+</html>

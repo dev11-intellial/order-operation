@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <form action="{% url 'create_order' %}" method="post">
+            {% csrf_token %}
+            <h1>Add Order</h1>
+            <div>
+                {% if msg %}
+                <p>{{msg}}</p>
+                {% endif %}
+            </div>
+            <div>
+                <div>
+                    <label for="">Customer</label>
+
+                    <select name="cust" id="">
+                        {% for i in customer %}
+                        <option value="{{i.id}}">{{i.first_name}}</option>
+                        {% endfor %}
+                    </select>
+
+                </div><br>
+                <div>
+                    <label for="">Product</label>
+
+                    <select name="prod" id="">
+                        {% for i in product %}
+                        <option value="{{i.id}}">{{i.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div><br>
+                <div>
+                    <label for="">Price</label>
+                    <input type="text" name="price" id="one">
+                </div><br>
+                <div>
+                    <label for="">Quentity</label>
+                    <input type="text" name="quentity" id="two" >
+                </div><br>
+                <div>
+                    <label for="">Total Price</label>
+                    <input type="text" name="totalprice" id="thr" onclick="result()" >
+                </div><br>
+                <div>
+                    <input type="submit" value="Place Order">
+                </div>
+            </div>
+        </form>
+        <div>
+            <a href="{% url 'all_order' %}">All Order</a>
+        </div>
+    </center>
+</body>
+
+</html>
