@@ -4,8 +4,8 @@ from django.db import models
 class Customer(models.Model):
     first_name=models.CharField(max_length=25)
     last_name=models.CharField(max_length=25)
-    contact_no=models.CharField(max_length=20)
-    pincode=models.CharField(max_length=10)
+    contact_no=models.IntegerField()
+    pincode=models.IntegerField()
 
     def __str__(self):
         return self.first_name
@@ -13,7 +13,7 @@ class Customer(models.Model):
 class Product(models.Model):
     
     name=models.CharField(max_length=25)
-    unit_price=models.CharField(max_length=100)
+    unit_price=models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Product(models.Model):
 class Order(models.Model):
     customer_id=models.ForeignKey(Customer, on_delete = models.CASCADE)
     product_id=models.ForeignKey(Product, on_delete = models.CASCADE)
-    price =models.CharField(max_length=100)
-    qty=models.CharField(max_length=100)
-    total_price=models.CharField(max_length=100)
+    price =models.DecimalField(max_digits=10, decimal_places=2)
+    qty=models.DecimalField(max_digits=10, decimal_places=2)
+    total_price=models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
