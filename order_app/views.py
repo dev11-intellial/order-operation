@@ -3,10 +3,10 @@ from .models import *
 
 # Create your views here.
 def index(request):
-    customer = Customer.objects.all()
-    product = Product.objects.all()
-    
-    return render(request,'index.html',{'customer':customer,'product':product})
+    customer = Customer.objects.values("id","first_name")
+    product = Product.objects.values("id","name","unit_price")
+
+    return render(request,'order.html',{'customer':customer,'product':product})
 
 
 def create_order(request):
@@ -29,11 +29,15 @@ def create_order(request):
         msg = 'your order are placed'
         return redirect('all_order')
     else:
-        return render(request,'index.html')
+        
+        return render(request,'order.html')
 
 def all_order(request):
-    order=Order.objects.all()
-    return render(request,'product.html',{'order':order})
+
+    order=Order.objects.values("id","price","qty","total_price","product_id__name","customer_id__first_name")
+    customer = Customer.objects.values("id","first_name")
+    product = Product.objects.values("id","name")
+    return render(request,'orders.html',{'order':order,"customer":customer,"product":product})
 
 def delete(request,id):
     order = Order.objects.get(id=id)

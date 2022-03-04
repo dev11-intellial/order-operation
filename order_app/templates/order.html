@@ -40,15 +40,17 @@
                 </div><br>
                 <div>
                     <label for="">Price</label>
-                    <input type="number" name="price" id="one">
+                 
+                    <input type="number" name="price" id="unitprice" value="{{i.unit_price}}">
+                  
                 </div><br>
                 <div>
                     <label for="">Quentity</label>
-                    <input type="number" name="quentity" id="two">
+                    <input type="number" name="quentity" id="quentity">
                 </div><br>
                 <div>
                     <label for="">Total Price</label>
-                    <input type="number" name="totalprice" id="result">
+                    <input type="number" name="totalprice" id="totalprice" readonly>
                 </div><br>
                 <div>
                     <input type="submit" value="Place Order">
@@ -59,6 +61,18 @@
             <a href="{% url 'all_order' %}">All Order</a>
         </div>
     </center>
+    <p>{{product.unit_price}}</p>
 </body>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+<script>
+    $("#quentity").keyup(function () {
+        var unit_price = $('#unitprice').val();
+        var quentity = $('#quentity').val();
+        var total = unit_price * quentity
+        $('#totalprice').val(total);
+    });
+</script>

@@ -31,15 +31,15 @@
                 </div><br>
                 <div>
                     <label for="">Price</label>
-                    <input type="number" name="price" id="" value="{{order.price}}" readonly>
+                    <input type="number" name="price" id="price" value="{{order.price}}" readonly>
                 </div><br>
                 <div>
                     <label for="">Quentity</label>
-                    <input type="number" name="quentity" value="{{order.qty}}">
+                    <input type="number" name="quentity" id="qty" value="{{order.qty}}">
                 </div><br>
                 <div>
                     <label for="">Total Price</label>
-                    <input type="number" name="totalprice" value="{{order.total_price}}">
+                    <input type="number" name="totalprice" id="totalprice" value="{{order.total_price}}" readonly>
                 </div><br>
                 <div>
                     <input type="submit" value="Edit">
@@ -53,3 +53,15 @@
 </body>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+<script>
+    $('#qty').keyup(function () {
+
+        var quentity = $('#qty').val();
+        var price = $('#price').val();
+        var total = quentity * price
+        $('#totalprice').val(total);
+    });
+</script>
