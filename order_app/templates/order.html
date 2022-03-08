@@ -10,7 +10,7 @@
 
 <body>
     <center>
-        <form action="{% url 'create_order' %}" method="post">
+        <form action="{% url 'order' %}" method="post">
             {% csrf_token %}
             <h1>Add Order</h1>
             <div>
@@ -60,7 +60,7 @@
             </div>
         </form>
         <div>
-            <a href="{% url 'all_order' %}">All Order</a>
+            <a href="{% url 'orders' %}">All Order</a>
         </div>
     </center>
     <p>{{product.unit_price}}</p>

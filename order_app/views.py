@@ -9,7 +9,7 @@ def index(request):
     return render(request,'order.html',{'customer':customer,'product':product})
 
 
-def create_order(request):
+def order(request):
     
     if request.POST:
         cust = request.POST['cust']
@@ -27,12 +27,12 @@ def create_order(request):
             total_price=request.POST['totalprice']
         )
         msg = 'your order are placed'
-        return redirect('all_order')
+        return redirect('orders')
     else:
         
         return render(request,'order.html')
 
-def all_order(request):
+def orders(request):
 
     order=Order.objects.values("id","price","qty","total_price","product_id__name","customer_id__first_name")
     customer = Customer.objects.values("id","first_name")
@@ -43,7 +43,7 @@ def delete(request,id):
     order = Order.objects.get(id=id)
     order.delete()
 
-    return redirect('all_order')
+    return redirect('orders')
 
 def edit(request,id):
     order = Order.objects.get(id=id)
@@ -54,4 +54,5 @@ def update(request,id):
     order.qty= request.POST['quentity']
     order.total_price = request.POST['totalprice']
     order.save()
-    return redirect('all_order')
+    return redirect('orders')
+    
