@@ -23,6 +23,7 @@
                     <label for="">Customer</label>
 
                     <select name="cust" id="">
+
                         {% for i in customer %}
                         <option value="{{i.id}}">{{i.first_name}}</option>
                         {% endfor %}
@@ -32,17 +33,18 @@
                 <div>
                     <label for="">Product</label>
 
-                    <select name="prod" id="">
+                    <select name="prod" id="productlist">
+                        <option value="">---select product---</option>
                         {% for i in product %}
-                        <option value="{{i.id}}">{{i.name}}</option>
+                        <option value="{{i.id}}" unitprice='{{i.unit_price}}'>{{i.name}}</option>
                         {% endfor %}
                     </select>
                 </div><br>
                 <div>
                     <label for="">Price</label>
-                 
+
                     <input type="number" name="price" id="unitprice" value="{{i.unit_price}}">
-                  
+
                 </div><br>
                 <div>
                     <label for="">Quentity</label>
@@ -74,5 +76,17 @@
         var quentity = $('#quentity').val();
         var total = unit_price * quentity
         $('#totalprice').val(total);
+    });
+    $('#productlist').change(function () {
+        if ($(this).val()) {
+            var unitprice = $(this).find('option:selected').attr('unitprice');
+            $('#unitprice').val(unitprice);
+        }
+        else {
+            $('#unitprice').val(0);
+        }
+
+
+
     });
 </script>
