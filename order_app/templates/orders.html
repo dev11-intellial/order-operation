@@ -83,12 +83,12 @@
             </tr>
             {% for i in order %}
             <tr>
-                <td>{{i.customer_id__first_name}}</td>
-                <td>{{i.product_id__name}}</td>
+                <td>{{i.customer__first_name}}</td>
+                <td>{{i.product__name}}</td>
                 <td>{{i.price}}</td>
                 <td>{{i.qty}}</td>
                 <td>{{i.total_price}}</td>
-                <td><a href="{% url 'edit' id=i.id %}">Edit</a></td>
+                <td><a href="{% url 'update' id=i.id %}">Edit</a></td>
                 <td><a href="{% url 'delete' id=i.id %}">Delete</a></td>
             </tr>
             {% endfor %}
